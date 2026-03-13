@@ -100,9 +100,6 @@ img {
   margin-bottom: 3rem;
   text-align: center;
   position: relative;
-  display: inline-block;
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 .section-title::after {
@@ -666,6 +663,9 @@ img {
 
 .project-links {
   margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
 /* =========================================
@@ -942,9 +942,8 @@ img {
     height: 250px;
   }
 
-  .tech-icons-floating i {
-    font-size: 2rem;
-    padding: 0.75rem;
+  .tech-icons-floating {
+    display: none;
   }
 
   .footer-content {
