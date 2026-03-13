@@ -195,7 +195,7 @@ img {
   -webkit-backdrop-filter: blur(10px);
   z-index: 1000;
   border-bottom: 1px solid var(--border-color);
-  transition: all var(--transition-normal);
+  transition: background var(--transition-normal), box-shadow var(--transition-normal);
 }
 
 .nav-container {
@@ -862,10 +862,12 @@ img {
     flex-direction: column;
     text-align: center;
     padding-top: calc(var(--nav-height) + 2rem);
+    min-height: auto;
+    padding-bottom: 4rem;
   }
 
   .hero-content {
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
   }
 
   .hero-actions {
@@ -878,11 +880,12 @@ img {
 
   .about-grid {
     grid-template-columns: 1fr;
+    gap: 3rem;
   }
 
   .about-image-wrapper {
     order: -1;
-    max-width: 400px;
+    max-width: 320px;
     margin: 0 auto;
   }
 
@@ -893,17 +896,32 @@ img {
 }
 
 @media screen and (max-width: 768px) {
+  :root {
+    --nav-height: 70px;
+  }
+
+  .section {
+    padding: 60px 0;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 2.5rem;
+  }
+
   .nav-links {
     position: fixed;
-    top: var(--nav-height);
+    top: 0;
     right: -100%;
-    width: 100%;
-    height: calc(100vh - var(--nav-height));
-    background-color: var(--bg-main);
+    width: 80%;
+    height: 100vh;
+    background-color: var(--bg-alt);
     flex-direction: column;
     align-items: center;
     justify-content: center;
     transition: right var(--transition-normal);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+    z-index: 1001;
   }
 
   .nav-links.active {
@@ -912,31 +930,43 @@ img {
 
   .mobile-menu-btn {
     display: block;
-  }
-
-  .section {
-    padding: 80px 0;
+    z-index: 1002;
   }
 
   .hero-visual {
-    min-height: 400px;
+    min-height: 350px;
   }
 
   .blob-shape {
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
+  }
+
+  .tech-icons-floating i {
+    font-size: 2rem;
+    padding: 0.75rem;
   }
 
   .footer-content {
     flex-direction: column;
     text-align: center;
+    gap: 1.5rem;
   }
 }
 
 @media screen and (max-width: 480px) {
+  .hero-name {
+    font-size: 2.5rem;
+  }
+
+  .hero-title {
+    font-size: 1.25rem;
+  }
+
   .hero-actions {
     flex-direction: column;
     gap: 1rem;
+    width: 100%;
   }
 
   .btn {
@@ -945,5 +975,26 @@ img {
 
   .projects-grid {
     grid-template-columns: 1fr;
+  }
+
+  .skill-info {
+    font-size: 0.9rem;
+  }
+
+  .contact-card {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .contact-card span {
+    font-size: 1rem;
+    word-break: break-all;
+  }
+
+  .contact-card .icon-circle {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    font-size: 1rem;
   }
 }
