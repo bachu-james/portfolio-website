@@ -64,26 +64,11 @@ document.addEventListener('DOMContentLoaded', () => {
         revealObserver.observe(el);
     });
 
-    // --- Intersection Observer for Skills Progress Bars ---
-    const skillsSection = document.getElementById('skills');
-    const skillCategories = document.querySelectorAll('.skill-category');
-    
-    const skillsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.querySelectorAll('.skill-list').forEach(list => {
-                    list.classList.add('animate-progress');
-                });
-                skillsObserver.unobserve(entry.target);
-            }
-        });
-    }, {
-        root: null,
-        threshold: 0.2
-    });
-
-    skillCategories.forEach(category => {
-        skillsObserver.observe(category);
+    // --- Bento Tiles Reveal Animation ---
+    const bentoTiles = document.querySelectorAll('.bento-tile');
+    bentoTiles.forEach(el => {
+        el.classList.add('reveal');
+        revealObserver.observe(el);
     });
 
 });

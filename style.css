@@ -474,14 +474,239 @@ img {
 }
 
 /* =========================================
-   Skills Section
+   Skills Section - Bento Grid Design
 ========================================= */
-.skills-grid {
+
+/* Bento Grid Layout */
+.bento-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
 }
 
+.bento-tile {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 1.25rem;
+  padding: 1.75rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Subtle gradient overlay per accent */
+.bento-tile::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-radius: 1.25rem 1.25rem 0 0;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.bento-tile[data-accent="cyan"]::before   { background: linear-gradient(90deg, #00e5ff, #00b8d4); }
+.bento-tile[data-accent="green"]::before  { background: linear-gradient(90deg, #00ffaa, #00c97b); }
+.bento-tile[data-accent="orange"]::before { background: linear-gradient(90deg, #ff9800, #ff5722); }
+.bento-tile[data-accent="purple"]::before { background: linear-gradient(90deg, #bb86fc, #7c4dff); }
+.bento-tile[data-accent="blue"]::before   { background: linear-gradient(90deg, #448aff, #2979ff); }
+.bento-tile[data-accent="mint"]::before   { background: linear-gradient(90deg, #00ffaa, #00e5a0); }
+
+.bento-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.bento-tile:hover::before {
+  opacity: 1;
+}
+
+/* Tile sizes */
+.bento-wide {
+  grid-column: span 1;
+}
+
+.bento-full {
+  grid-column: 1 / -1;
+}
+
+/* Bento Header */
+.bento-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.bento-icon-wrap {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.bento-tile[data-accent="cyan"] .bento-icon-wrap   { background: rgba(0, 229, 255, 0.12); color: #00e5ff; }
+.bento-tile[data-accent="green"] .bento-icon-wrap  { background: rgba(0, 255, 170, 0.12); color: #00ffaa; }
+.bento-tile[data-accent="orange"] .bento-icon-wrap { background: rgba(255, 152, 0, 0.12); color: #ff9800; }
+.bento-tile[data-accent="purple"] .bento-icon-wrap { background: rgba(187, 134, 252, 0.12); color: #bb86fc; }
+.bento-tile[data-accent="blue"] .bento-icon-wrap   { background: rgba(68, 138, 255, 0.12); color: #448aff; }
+.bento-tile[data-accent="mint"] .bento-icon-wrap   { background: rgba(0, 255, 170, 0.12); color: #00ffaa; }
+
+.bento-header h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+/* Skills inside tiles */
+.bento-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  justify-content: flex-start;
+}
+
+.bento-skill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 65px;
+}
+
+/* SVG Circular Ring */
+.skill-ring {
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+
+.skill-ring svg {
+  width: 60px;
+  height: 60px;
+  transform: rotate(-90deg);
+}
+
+.ring-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.06);
+  stroke-width: 2.5;
+}
+
+.ring-fill {
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  transition: stroke-dasharray 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Accent colors for ring strokes */
+.bento-tile[data-accent="cyan"] .ring-fill   { stroke: #00e5ff; }
+.bento-tile[data-accent="green"] .ring-fill  { stroke: #00ffaa; }
+.bento-tile[data-accent="orange"] .ring-fill { stroke: #ff9800; }
+.bento-tile[data-accent="purple"] .ring-fill { stroke: #bb86fc; }
+.bento-tile[data-accent="blue"] .ring-fill   { stroke: #448aff; }
+.bento-tile[data-accent="mint"] .ring-fill   { stroke: #00ffaa; }
+
+.ring-icon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  transition: color 0.3s ease;
+}
+
+.bento-skill:hover .ring-icon {
+  color: var(--text-main);
+}
+
+.skill-name {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-align: center;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.bento-skill:hover .skill-name {
+  color: var(--text-main);
+}
+
+/* Tool Chips */
+.bento-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.bento-chip {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.bento-chip i {
+  margin-right: 0.35rem;
+}
+
+.bento-chip:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  background: rgba(0, 255, 170, 0.06);
+  transform: translateY(-2px);
+}
+
+/* Responsive Bento */
+@media screen and (max-width: 900px) {
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bento-tile {
+    padding: 1.25rem;
+  }
+
+  .skill-ring {
+    width: 50px;
+    height: 50px;
+  }
+
+  .skill-ring svg {
+    width: 50px;
+    height: 50px;
+  }
+
+  .ring-icon {
+    font-size: 0.9rem;
+  }
+}
+
+/* =========================================
+   Shared Card & Tag Styles
+========================================= */
 .card {
   background: var(--bg-card);
   border-radius: 1rem;
@@ -494,67 +719,6 @@ img {
   transform: translateY(-5px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   border-color: rgba(0, 255, 170, 0.2);
-}
-
-.card-header {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.card-header i {
-  font-size: 1.75rem;
-  color: var(--primary-color);
-}
-
-.card-header h3 {
-  font-size: 1.25rem;
-}
-
-.skill-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.skill-info {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-}
-
-.skill-info i {
-  margin-right: 0.5rem;
-  color: var(--text-muted);
-}
-
-.progress-bar {
-  width: 100%;
-  height: 6px;
-  background-color: var(--bg-main);
-  border-radius: 3px;
-  overflow: hidden;
-}
-
-.progress {
-  height: 100%;
-  background-color: var(--primary-color);
-  border-radius: 3px;
-  transform-origin: left;
-  /* Animation triggered by JS later, we just set initial state to 0 for animation effect if we want, or leave as is */
-}
-
-/* For animate on scroll via JS */
-.animate-progress .progress {
-  animation: fillBar 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.tools-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
 }
 
 .tag {
@@ -976,8 +1140,31 @@ img {
     grid-template-columns: 1fr;
   }
 
-  .skill-info {
-    font-size: 0.9rem;
+  /* Skills constellation responsive */
+  .skills-constellation {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .node-icon {
+    width: 55px;
+    height: 55px;
+    font-size: 1.2rem;
+    border-radius: 14px;
+  }
+
+  .node-inner {
+    width: 65px;
+    height: 65px;
+  }
+
+  .node-label {
+    font-size: 0.7rem;
+  }
+
+  .skills-tab {
+    padding: 0.45rem 0.8rem;
+    font-size: 0.75rem;
   }
 
   .contact-card {
