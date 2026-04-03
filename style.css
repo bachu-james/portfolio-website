@@ -513,6 +513,7 @@ img {
 .bento-tile[data-accent="purple"]::before { background: linear-gradient(90deg, #bb86fc, #7c4dff); }
 .bento-tile[data-accent="blue"]::before   { background: linear-gradient(90deg, #448aff, #2979ff); }
 .bento-tile[data-accent="mint"]::before   { background: linear-gradient(90deg, #00ffaa, #00e5a0); }
+.bento-tile[data-accent="red"]::before    { background: linear-gradient(90deg, #ff5252, #ff1744); }
 
 .bento-tile:hover {
   transform: translateY(-4px);
@@ -558,6 +559,7 @@ img {
 .bento-tile[data-accent="purple"] .bento-icon-wrap { background: rgba(187, 134, 252, 0.12); color: #bb86fc; }
 .bento-tile[data-accent="blue"] .bento-icon-wrap   { background: rgba(68, 138, 255, 0.12); color: #448aff; }
 .bento-tile[data-accent="mint"] .bento-icon-wrap   { background: rgba(0, 255, 170, 0.12); color: #00ffaa; }
+.bento-tile[data-accent="red"] .bento-icon-wrap    { background: rgba(255, 82, 82, 0.12); color: #ff5252; }
 
 .bento-header h3 {
   font-size: 1.1rem;
@@ -614,6 +616,7 @@ img {
 .bento-tile[data-accent="purple"] .ring-fill { stroke: #bb86fc; }
 .bento-tile[data-accent="blue"] .ring-fill   { stroke: #448aff; }
 .bento-tile[data-accent="mint"] .ring-fill   { stroke: #00ffaa; }
+.bento-tile[data-accent="red"] .ring-fill    { stroke: #ff5252; }
 
 .ring-icon {
   position: absolute;
