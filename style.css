@@ -458,16 +458,11 @@ img {
   z-index: 0;
 }
 
-.about-image-placeholder {
+.about-image {
   width: 100%;
   aspect-ratio: 4/5;
-  background: var(--bg-card);
+  object-fit: cover;
   border-radius: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 5rem;
-  color: var(--border-color);
   position: relative;
   z-index: 1;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
