@@ -808,6 +808,33 @@ img {
   font-size: 0.95rem;
   margin-bottom: 1.5rem;
   flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.project-desc.expanded {
+  -webkit-line-clamp: unset;
+}
+
+.read-more-toggle {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 1.5rem;
+  text-align: left;
+  transition: color var(--transition-fast);
+  margin-top: -0.5rem; /* pull up slightly closer to the text */
+}
+
+.read-more-toggle:hover {
+  color: #fff;
+  text-decoration: underline;
 }
 
 .project-tech {

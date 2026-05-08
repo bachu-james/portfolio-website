@@ -71,4 +71,31 @@ document.addEventListener('DOMContentLoaded', () => {
         revealObserver.observe(el);
     });
 
+    // --- Read More Toggle for Project Descriptions ---
+    const projectDescriptions = document.querySelectorAll('.project-desc');
+    
+    // Use a slight delay to ensure layout is calculated before checking heights
+    setTimeout(() => {
+        projectDescriptions.forEach(desc => {
+            // Check if the text is clamped (actual height > visible height)
+            if (desc.scrollHeight > desc.clientHeight) {
+                const btn = document.createElement('button');
+                btn.className = 'read-more-toggle';
+                btn.textContent = 'Read More';
+                
+                // Insert the button right after the description
+                desc.parentNode.insertBefore(btn, desc.nextSibling);
+                
+                btn.addEventListener('click', () => {
+                    desc.classList.toggle('expanded');
+                    if (desc.classList.contains('expanded')) {
+                        btn.textContent = 'Show Less';
+                    } else {
+                        btn.textContent = 'Read More';
+                    }
+                });
+            }
+        });
+    }, 100);
+
 });
